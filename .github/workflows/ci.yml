@@ -25,6 +25,8 @@ jobs:
     - name: Install gems
       run: |
         bundle config set clean 'true'
+        bundle install --path vendor/cache
+        bundle clean --force
         bundle install --jobs 4 --retry 3
     - name: Run RuboCop
       run: bundle exec rubocop
