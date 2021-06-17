@@ -1,32 +1,20 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
-# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+name: Rubocop
 
-name: Ruby
-
-on: [push]
+on:
+  pull_request:
+    branches:
+    - master
 
 jobs:
-  test:
+  execute:
+
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6.5
-    - name: install deps
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install -y libcurl4-openssl-dev
-    - name: Install gems
-      run: |
-        bundle config set clean 'true'
-        bundle install --path vendor/cache
-        bundle clean --force
-        bundle install --jobs 4 --retry 3
-    - name: Run RuboCop
-      run: bundle exec rubocop
+        bundler: 'none'
+    - uses: steiley/exec-ruby-diagnostic@v1.0.7
+      with:
+        gem_name: rubocop
