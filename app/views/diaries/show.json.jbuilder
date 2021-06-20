@@ -1,1 +1,1 @@
-json.partial! "diaries/diary", diary: @diary
+json.partial! 'diaries/diary', diary: @diary

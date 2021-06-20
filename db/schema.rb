@@ -10,21 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_054352) do
-
+ActiveRecord::Schema.define(version: 20_210_620_054_352) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "diaries", force: :cascade do |t|
-    t.text "high_light"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'diaries', force: :cascade do |t|
+    t.text 'high_light'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "memos", force: :cascade do |t|
-    t.text "highlight"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'memos', force: :cascade do |t|
+    t.text 'highlight'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end
