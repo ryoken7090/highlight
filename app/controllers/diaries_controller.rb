@@ -1,5 +1,5 @@
 class DiariesController < ApplicationController
-  before_action :set_diary, only: %i[ show edit update destroy ]
+  before_action :set_diary, only: %i[show edit update destroy]
 
   # GET /diaries or /diaries.json
   def index
@@ -7,8 +7,7 @@ class DiariesController < ApplicationController
   end
 
   # GET /diaries/1 or /diaries/1.json
-  def show
-  end
+  def show; end
 
   # GET /diaries/new
   def new
@@ -16,8 +15,7 @@ class DiariesController < ApplicationController
   end
 
   # GET /diaries/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /diaries or /diaries.json
   def create
@@ -25,7 +23,7 @@ class DiariesController < ApplicationController
 
     respond_to do |format|
       if @diary.save
-        format.html { redirect_to @diary, notice: "Diary was successfully created." }
+        format.html { redirect_to @diary, notice: 'Diary was successfully created.' }
         format.json { render :show, status: :created, location: @diary }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class DiariesController < ApplicationController
   def update
     respond_to do |format|
       if @diary.update(diary_params)
-        format.html { redirect_to @diary, notice: "Diary was successfully updated." }
+        format.html { redirect_to @diary, notice: 'Diary was successfully updated.' }
         format.json { render :show, status: :ok, location: @diary }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +49,20 @@ class DiariesController < ApplicationController
   def destroy
     @diary.destroy
     respond_to do |format|
-      format.html { redirect_to diaries_url, notice: "Diary was successfully destroyed." }
+      format.html { redirect_to diaries_url, notice: 'Diary was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_diary
-      @diary = Diary.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def diary_params
-      params.require(:diary).permit(:high_light)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_diary
+    @diary = Diary.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def diary_params
+    params.require(:diary).permit(:high_light)
+  end
 end

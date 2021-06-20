@@ -1,1 +1,1 @@
-json.array! @diaries, partial: "diaries/diary", as: :diary
+json.array! @diaries, partial: 'diaries/diary', as: :diary
