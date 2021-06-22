@@ -1,5 +1,11 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
 Style/Documentation:
   Enabled: false
 Style/MixinUsage:
   Exclude:
     - 'bin/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
