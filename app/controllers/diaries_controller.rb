@@ -23,37 +23,26 @@ class DiariesController < ApplicationController
   def create
     @diary = Diary.new(diary_params)
 
-    respond_to do |format|
-      if @diary.save
-        format.html { redirect_to @diary, notice: 'Diary was successfully created.' }
-        format.json { render :show, status: :created, location: @diary }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @diary.errors, status: :unprocessable_entity }
-      end
+    if @diary.save
+      redirect_to @diary, notice: 'Diary was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /diaries/1 or /diaries/1.json
   def update
-    respond_to do |format|
-      if @diary.update(diary_params)
-        format.html { redirect_to @diary, notice: 'Diary was successfully updated.' }
-        format.json { render :show, status: :ok, location: @diary }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @diary.errors, status: :unprocessable_entity }
-      end
+    if @diary.update(diary_params)
+      redirect_to @diary, notice: 'Diary was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /diaries/1 or /diaries/1.json
   def destroy
     @diary.destroy
-    respond_to do |format|
-      format.html { redirect_to diaries_url, notice: 'Diary was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to diaries_url, notice: 'Diary was successfully destroyed.'
   end
 
   private
