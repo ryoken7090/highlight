@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe '/diaries', type: :request do
+  let(:valid_attributes) { FactoryBot.attributes_for(:diary) }
+  let(:invalid_attributes) { { high_light: '' } }
+
   describe 'GET /index' do
     let!(:diary) { create :diary }
 
@@ -13,30 +16,32 @@ RSpec.describe '/diaries', type: :request do
     end
   end
 
-  xdescribe 'GET /show' do
+  describe 'GET /show' do
+    let!(:diary) { create :diary }
+
     it 'renders a successful response' do
-      diary = Diary.create! valid_attributes
       get diary_url(diary)
       expect(response).to be_successful
     end
   end
 
-  xdescribe 'GET /new' do
+  describe 'GET /new' do
     it 'renders a successful response' do
       get new_diary_url
       expect(response).to be_successful
     end
   end
 
-  xdescribe 'GET /edit' do
+  describe 'GET /edit' do
+    let!(:diary) { create :diary }
+
     it 'render a successful response' do
-      diary = Diary.create! valid_attributes
       get edit_diary_url(diary)
       expect(response).to be_successful
     end
   end
 
-  xdescribe 'POST /create' do
+  describe 'POST /create' do
     context 'with valid parameters' do
       it 'creates a new Diary' do
         expect do
@@ -59,22 +64,20 @@ RSpec.describe '/diaries', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post diaries_url, params: { diary: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status '422'
       end
     end
   end
 
-  xdescribe 'PATCH /update' do
+  describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
+      let(:new_attributes) { { high_light: 'NewText' } }
 
       it 'updates the requested diary' do
         diary = Diary.create! valid_attributes
         patch diary_url(diary), params: { diary: new_attributes }
         diary.reload
-        skip('Add assertions for updated state')
+        expect(diary.high_light).to eq new_attributes[:high_light]
       end
 
       it 'redirects to the diary' do
@@ -89,12 +92,12 @@ RSpec.describe '/diaries', type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         diary = Diary.create! valid_attributes
         patch diary_url(diary), params: { diary: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status '422'
       end
     end
   end
 
-  xdescribe 'DELETE /destroy' do
+  describe 'DELETE /destroy' do
     it 'destroys the requested diary' do
       diary = Diary.create! valid_attributes
       expect do
