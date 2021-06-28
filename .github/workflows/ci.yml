@@ -18,3 +18,5 @@ jobs:
     - uses: steiley/exec-ruby-diagnostic@v1.0.7
       with:
         gem_name: rubocop
+    # - name: Run rspec
+    #   run: bundle exec rspec --force-color --format progress
