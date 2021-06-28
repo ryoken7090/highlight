@@ -65,6 +65,7 @@ RSpec.describe '/diaries', type: :request do
       it "renders a successful response (i.e. to display the 'new' template)" do
         post diaries_url, params: { diary: invalid_attributes }
         expect(response).to have_http_status '422'
+        # expect(response).to render_template(:new)
       end
     end
   end
