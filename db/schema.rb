@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_054352) do
+ActiveRecord::Schema.define(version: 2021_06_22_233117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 2021_06_20_054352) do
     t.text "high_light", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "concentration", null: false, comment: "その日の集中力を10段階で評価"
+    t.integer "energy", null: false, comment: "その日に注げたエネルギーを10段階で評価"
+    t.text "reflection", default: "", null: false, comment: "その日の反省"
+    t.text "thanks", default: "", null: false, comment: "その日誰かに感謝したこと"
+    t.datetime "date", null: false, comment: "日付"
   end
 
 end
