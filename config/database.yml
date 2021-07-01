@@ -21,6 +21,10 @@ test:
   adapter: postgresql
   database: highlight_test
   pool: 5
+  port: 5432
+  host: <%= ENV['DB_HOST'] %>
+  user: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
 
 production:
   adapter: postgresql
