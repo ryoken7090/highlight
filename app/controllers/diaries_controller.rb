@@ -54,6 +54,11 @@ class DiariesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def diary_params
-    params.require(:diary).permit(:high_light)
+    params.require(:diary).permit(:high_light,
+                                  :concentration,
+                                  :energy,
+                                  :reflection,
+                                  :thanks,
+                                  :date)
   end
 end
