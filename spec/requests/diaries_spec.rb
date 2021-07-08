@@ -72,8 +72,14 @@ RSpec.describe '/diaries', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) { { high_light: 'NewText' } }
-
+      let(:new_attributes) do
+        { high_light: 'NewText',
+          concentration: '9',
+          energy: '9',
+          reflection: 'NewReflection',
+          thanks: 'NewThanks',
+          date: '20210102' }
+      end
       it 'updates the requested diary' do
         diary = Diary.create! valid_attributes
         patch diary_url(diary), params: { diary: new_attributes }
