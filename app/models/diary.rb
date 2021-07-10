@@ -6,7 +6,7 @@ class Diary < ApplicationRecord
   validates :concentration, inclusion: { in: 1..10 }
   validates :energy, presence: true
   validates :energy, inclusion: { in: 1..10 }
-  validates :reflection, presence: true
-  validates :thanks, presence: true
+  validates :reflection, exclusion: { in: [nil] }
+  validates :thanks, exclusion: { in: [nil] }
   validates :date, presence: true
 end
