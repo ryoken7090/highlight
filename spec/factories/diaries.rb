@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   factory :diary do
-    high_light { 'MyText' }
-    concentration { '10' }
-    energy { '10' }
-    reflection { 'MyReflection' }
-    thanks { 'MyThanks' }
+    sequence(:high_light) { |i| "Text#{i}" }
+    concentration { (1..10).to_a.sample }
+    energy { (1..10).to_a.sample }
+    sequence(:reflection) { |i| "Reflection#{i}" }
+    sequence(:thanks) { |i| "Thanks#{i}" }
     date { '20210101' }
   end
 end
