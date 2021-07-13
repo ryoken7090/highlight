@@ -72,8 +72,7 @@ RSpec.describe '/diaries', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) { { high_light: 'NewText' } }
-
+      let(:new_attributes) { FactoryBot.attributes_for(:diary) }
       it 'updates the requested diary' do
         diary = Diary.create! valid_attributes
         patch diary_url(diary), params: { diary: new_attributes }
