@@ -19,10 +19,10 @@
     <%= form.text_area :high_light %>
 
     <%= form.label :concentration %>
-    <%= number_field(:diary, :concentration, in: 1..10, step: 1) %>
+    <%= form.number_field(:concentration, in: 1..10, step: 1) %>
 
     <%= form.label :diary, :energy %>
-    <%= number_field(:diary, :energy, in: 1..10, step: 1) %>
+    <%= form.number_field(:energy, in: 1..10, step: 1) %>
 
     <%= form.label :reflection %>
     <%= form.text_area :reflection %>
