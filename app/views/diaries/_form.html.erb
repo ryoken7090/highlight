@@ -12,8 +12,25 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+
     <%= form.label :high_light %>
     <%= form.text_area :high_light %>
+
+    <%= form.label :concentration %>
+    <%= number_field(:diary, :concentration, in: 1..10, step: 1) %>
+
+    <%= form.label :diary, :energy %>
+    <%= number_field(:diary, :energy, in: 1..10, step: 1) %>
+
+    <%= form.label :reflection %>
+    <%= form.text_area :reflection %>
+
+    <%= form.label :thanks %>
+    <%= form.text_area :thanks %>
+
+
   </div>
 
   <div class="actions">
