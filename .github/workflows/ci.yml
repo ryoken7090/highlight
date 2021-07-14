@@ -1,8 +1,5 @@
 name: ruby
-on:
-  pull_request:
-    branches:
-    - master
+on: push
 jobs:
   execute:
     runs-on: ubuntu-latest
