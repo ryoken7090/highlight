@@ -1,15 +1,21 @@
-name: Rubocop
-
-on:
-  pull_request:
-    branches:
-    - master
-
+name: ruby
+on: push
 jobs:
   execute:
-
     runs-on: ubuntu-latest
-
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+          RAILS_ENV: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
@@ -18,5 +24,21 @@ jobs:
     - uses: steiley/exec-ruby-diagnostic@v1.0.7
       with:
         gem_name: rubocop
-    # - name: Run rspec
-    #   run: bundle exec rspec --force-color --format progress
+    - name: Install gem dependencies
+      run: |
+        gem install bundler
+        bundler install
+    - name: Database setup
+      run: bundle exec rails db:setup --trace
+      env:
+        RAILS_ENV: test
+        DB_HOST: 'localhost'
+        DB_USER: 'postgres'
+        DB_PASSWORD: 'postgres'
+    - name: Run rspec
+      run: bundle exec rspec
+      env:
+        RAILS_ENV: test
+        DB_HOST: 'localhost'
+        DB_USER: 'postgres'
+        DB_PASSWORD: 'postgres'
