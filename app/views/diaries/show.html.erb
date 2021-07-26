@@ -1,9 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Date:</strong>
+  <%= @diary.date.strftime('%Y/%m/%d') %>
+</p>
+<p>
   <strong>High light:</strong>
   <%= @diary.high_light %>
 </p>
-
+<p>
+  <strong>Concentration:</strong>
+  <%= @diary.concentration %>
+</p>
+<p>
+  <strong>Energy:</strong>
+  <%= @diary.energy %>
+</p>
+<p>
+  <strong>Reflection:</strong>
+  <%= @diary.reflection %>
+</p>
+<p>
+  <strong>Thanks:</strong>
+  <%= @diary.thanks %>
+</p>
 <%= link_to 'Edit', edit_diary_path(@diary) %> |
 <%= link_to 'Back', diaries_path %>
