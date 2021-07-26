@@ -3,6 +3,8 @@ AllCops:
     - 'db/schema.rb'
 Style/Documentation:
   Enabled: false
+Style/AsciiComments:
+  Enabled: false
 Style/MixinUsage:
   Exclude:
     - 'bin/*'
