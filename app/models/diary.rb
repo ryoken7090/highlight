@@ -9,4 +9,6 @@ class Diary < ApplicationRecord
   validates :reflection, exclusion: { in: [nil] }
   validates :thanks, exclusion: { in: [nil] }
   validates :date, presence: true
+  has_many :tried_strategy_references, dependent: :destroy
+  has_many :tried_strategies, through: :tried_strategy_references, source: :strategy
 end
